@@ -1,2 +1,2 @@
-# Vora.ledger
+# Vora Ledger
 AI-agent
