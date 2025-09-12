@@ -1,0 +1,64 @@
+{% extends "Base.html" %}
+{% block title %}Chat - Recomombot{% endblock %}
+{% block content %}
+  <div class="chat-layout">
+    <aside class="chat-sidebar">
+      <div class="user-card">
+        <p>Conectado como</p>
+        <h3>{{ user.nombre }}</h3>
+        <small>{{ user.email }}</small>
+      </div>
+       <form method="POST" action="{{ url_for('borrar_historial') }}" class="delete-form">
+        <button type="submit" class="btn btn-delete">🗑️ Borrar historial</button>
+      </form>
+    </aside>
+
+    <section class="chat-main">
+      <div id="chat-window" class="chat-window">
+        {% if historial %}
+          {% for m in historial %}
+            <div class="bubble user">{{ m.mensaje }}</div>
+            <div class="bubble bot">{{ m.respuesta }}</div>
+          {% endfor %}
+        {% else %}
+          <div class="placeholder">Aún no tienes mensajes. Escribe algo...</div>
+        {% endif %}
+      </div>
+          
+      <form id="chat-form" class="chat-form" method="POST" action="{{ url_for('chat') }}">
+        <input id="mensaje" name="mensaje" type="text" placeholder="Escribe tu mensaje..." required>
+        <button class="btn" type="submit">Enviar</button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+  const form = document.getElementById('chat-form');
+  const chatWindow = document.getElementById('chat-window');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const mensaje = document.getElementById('mensaje').value.trim();
+    if (!mensaje) return;
+    document.getElementById('mensaje').value = '';
+
+    const userDiv = document.createElement('div');
+    userDiv.className = 'bubble user';
+    userDiv.textContent = mensaje;
+    chatWindow.appendChild(userDiv);
+
+    const resp = await fetch('{{ url_for("api_chat") }}', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({mensaje})
+    });
+    const data = await resp.json();
+    const botDiv = document.createElement('div');
+    botDiv.className = 'bubble bot';
+    botDiv.textContent = data.respuesta;
+    chatWindow.appendChild(botDiv);
+
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  });
+  </script>
+{% endblock %}
+
