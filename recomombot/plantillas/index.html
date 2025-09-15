@@ -1,0 +1,24 @@
+{% extends "Base.html" %}
+{% block title %}Inicio - Recomombot{% endblock %}
+{% block content %}
+  <section class="hero">
+    <div class="hero-left">
+      <h1>Vora EX</h1>
+      <p>Estoy Listo para ayudarte con tus recomendaciones en libros o peliculas.</p>
+      <div class="cta">
+        {% if session.user %}
+          <a class="btn" href="{{ url_for('chat') }}">Ir al chat</a>
+        {% else %}
+          <a class="btn" href="{{ url_for('login') }}">Iniciar sesión</a>
+          <a class="btn btn-outline" href="{{ url_for('registro') }}">Crear cuenta</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="card-preview">
+        <img src="{{ url_for('static', filename='imagenes/bot.png') }}" alt="preview">
+      </div>
+    </div>
+  </section>
+{% endblock %}
+

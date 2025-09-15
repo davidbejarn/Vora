@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vora EX</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="{{ url_for('static', filename='imagenes/logo.png') }}" alt="logo" class="logo">
+      <span>Vora EX</span>
+    </div>
+    <nav>
+      <a href="{{ url_for('index') }}">Inicio</a>
+      {% if session.get('user') %}
+        <a href="{{ url_for('chat') }}">Chat</a>
+        <a href="{{ url_for('logout') }}" class="btn-logout">Cerrar sesión</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Iniciar sesión</a>
+        <a href="{{ url_for('registro') }}">Registrarse</a>
+      {% endif %}
+      <a href="{{ url_for('facial1') }}">RegFace Beta</a>
+    </nav>
+  </header>
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flashes">
+          {% for category, msg in messages %}
+            <div class="flash {{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="footer">
+    <p>© {{ current_year }} • Vora EX • </p>
+  </footer>
+</body>
+</html>
+
