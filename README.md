@@ -12,7 +12,7 @@ Currently, users need to check multiple sources to find books, movies, or series
 ### Technologies
 - Programming: Python with Flask framework
 - Data Base: MySQL
-- API: OpenIA
+- API: Google Gemini AI
 
 ### Clonar repositorio <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Weary%20Cat.png" alt="Weary Cat" width="35" height="35" /></h1>
 `git clone https://github.com/tu-usuario/Vora.git`
