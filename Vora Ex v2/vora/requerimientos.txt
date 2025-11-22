@@ -1,0 +1,18 @@
+Flask==3.0.3
+flask-cors==4.0.1
+werkzeug==3.0.3
+
+mysql-connector-python==9.0.0
+
+requests==2.32.3
+google-generativeai==0.7.0
+
+opencv-contrib-python==4.10.0.84
+numpy==1.26.4
+
+pillow==10.2.0
+
+# Opcionales / útiles
+flask-session==0.5.0
+pandas==2.2.2
+

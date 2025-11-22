@@ -1,0 +1,16 @@
+{% extends "Base.html" %}
+{% block title %}Login - Recomombot{% endblock %}
+{% block content %}
+  <div class="card auth-card">
+    <h2>Iniciar sesión</h2>
+    <form method="POST" action="{{ url_for('login') }}">
+      <label>Email</label>
+      <input type="email" name="email" required placeholder="correo@ejemplo.com">
+      <label>Contraseña</label>
+      <input type="password" name="password" required placeholder="••••••••">
+      <button class="btn" type="submit">Entrar</button>
+      <a href="/login_facial" class="btn btn-secondary">FaceID</a>
+    </form>
+    <p>¿No tienes cuenta? <a href="{{ url_for('registro') }}">Regístrate</a></p>
+  </div>
+{% endblock %}
