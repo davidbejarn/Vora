@@ -1,0 +1,210 @@
+{% extends "Base.html" %}
+{% block title %}Inicio - Recomombot{% endblock %}
+{% block content %}
+
+<!-- HERO ORIGINAL -->
+<section class="hero">
+  <div class="container" style="display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center">
+    <div class="hero-left">
+      <!-- Título con efecto liquid glass -->
+      <div style="
+        background: var(--glass);
+        backdrop-filter: var(--blur-level) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 28px;
+        padding: 16px 28px;
+        display: inline-block;
+        box-shadow: 
+          0 8px 32px rgba(168, 47, 148, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        margin-bottom: 20px;
+      ">
+        <h1 style="
+          font-size: 2.6rem;
+          margin: 0;
+          color: transparent;
+          background-clip: text;
+          -webkit-background-clip: text;
+          background-image: var(--accent);
+          font-weight: 800;
+          letter-spacing: -1.5px;
+          font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+        ">Vora EX</h1>
+      </div>
+      
+      <p class="lead" style="
+        color: var(--muted);
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        font-weight: 400;
+        letter-spacing: -0.2px;
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+      ">
+        Estoy listo para ayudarte con tus recomendaciones en libros o películas.
+      </p>
+
+      <div class="cta" style="margin-top:24px; display:flex; gap:12px; flex-direction:row;">
+        {% if session.user %}
+          <a class="btn" href="{{ url_for('chat') }}">Ir al chat</a>
+        {% else %}
+          <a class="btn" href="{{ url_for('login') }}">Iniciar sesión</a>
+          <a class="btn" href="{{ url_for('registro') }}">Registrarse</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div style="display:flex;justify-content:center;align-items:center;padding:0;">
+        <img src="{{ url_for('static', filename='imagenes/logo.png') }}" alt="preview" style="width:220px;height:auto;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOVEDADES Y NOTICIAS - DOS COLUMNAS SEPARADAS -->
+<section style="padding:40px 0;">
+  <div class="container" style="max-width:1100px; display:grid; grid-template-columns: 1fr 1fr; gap:24px; align-items:start;">
+    
+    <!-- COLUMNA IZQUIERDA: NOVEDADES -->
+    <div class="hero" style="height: 100%; display: flex; flex-direction: column; padding: 28px 28px;">
+      <h2 style="margin-top:0; margin-bottom: 24px; font-size:1.8rem; color:transparent; background-clip:text; -webkit-background-clip:text; background-image:var(--accent); font-weight:700; letter-spacing: -0.5px;">Novedades</h2>
+
+      <!-- Novedad 1 -->
+      <article style="display:flex; gap:16px; margin-bottom:18px; align-items:center; background: rgba(255,255,255,0.03); padding: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.05);">
+        <img src="{{ url_for('static', filename='imagenes/soyungato.jpg') }}" alt="noticia1" style="width:110px; height:110px; object-fit:cover; border-radius:10px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        <div style="flex: 1;">
+          <h3 style="margin:0 0 6px 0; font-size: 1.05rem; color: var(--text); font-weight: 600; letter-spacing: -0.3px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Lectura de la semana</h3>
+          <p style="margin:0; color:var(--muted); font-size: 0.88rem; line-height: 1.5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Novela satírica escrita entre 1905 y 1906 por el escritor japonés Natsume Sōseki.</p>
+        </div>
+      </article>
+
+      <!-- Novedad 2 -->
+      <article style="display:flex; gap:16px; margin-bottom:18px; align-items:center; background: rgba(255,255,255,0.03); padding: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.05);">
+        <img src="{{ url_for('static', filename='imagenes/padrino.jpg') }}" alt="noticia2" style="width:110px; height:110px; object-fit:cover; border-radius:10px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        <div style="flex: 1;">
+          <h3 style="margin:0 0 6px 0; font-size: 1.05rem; color: var(--text); font-weight: 600; letter-spacing: -0.3px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Top películas recomendadas</h3>
+          <p style="margin:0; color:var(--muted); font-size: 0.88rem; line-height: 1.5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Película estadounidense de 1972 dirigida por Francis Ford Coppola.</p>
+        </div>
+      </article>
+
+      <!-- Novedad 3 - NUEVA -->
+      <article style="display:flex; gap:16px; margin-bottom:18px; align-items:center; background: rgba(255,255,255,0.03); padding: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.05);">
+        <img src="{{ url_for('static', filename='imagenes/anillos.jpg') }}" alt="noticia3" style="width:110px; height:110px; object-fit:cover; border-radius:10px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        <div style="flex: 1;">
+          <h3 style="margin:0 0 6px 0; font-size: 1.05rem; color: var(--text); font-weight: 600; letter-spacing: -0.3px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Saga del mes</h3>
+          <p style="margin:0; color:var(--muted); font-size: 0.88rem; line-height: 1.5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Trilogía épica de fantasía escrita por J.R.R. Tolkien, considerada una obra maestra.</p>
+        </div>
+      </article>
+
+      <!-- Novedad 3 - NUEVA -->
+      <article style="display:flex; gap:16px; margin-bottom:18px; align-items:center; background: rgba(255,255,255,0.03); padding: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.05);">
+        <img src="{{ url_for('static', filename='imagenes/anillos.jpg') }}" alt="noticia3" style="width:110px; height:110px; object-fit:cover; border-radius:10px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+        <div style="flex: 1;">
+          <h3 style="margin:0 0 6px 0; font-size: 1.05rem; color: var(--text); font-weight: 600; letter-spacing: -0.3px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Saga del mes</h3>
+          <p style="margin:0; color:var(--muted); font-size: 0.88rem; line-height: 1.5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Trilogía épica de fantasía escrita por J.R.R. Tolkien, considerada una obra maestra.</p>
+        </div>
+      </article>
+
+      <!-- Botón más a la derecha -->
+      <div style="display: flex; justify-content: flex-end; margin-top: auto; padding-right: 8px;">
+        <a class="btn btn-outline" href="#" style="display:inline-block;">Ver más novedades</a>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: NOTICIAS -->
+<!-- COLUMNA DERECHA: NOTICIAS -->
+<div class="hero" style="height: 100%; display: flex; flex-direction: column; padding: 28px 28px;">
+  <h2 style="margin-top:0; margin-bottom: 24px; font-size:1.8rem; color:transparent; background-clip:text; -webkit-background-clip:text; background-image:var(--accent); font-weight:700; letter-spacing: -0.5px;">Noticias</h2>
+  <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; align-content: start;">
+    <!-- Card 1 -->
+    <div style="border-radius:14px; overflow:hidden; background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s ease; display: flex; flex-direction: column; max-height: 160px;">
+      <div style="padding:10px 12px;">
+        <h4 style="margin:0; color:var(--text); font-size: 0.88rem; font-weight: 600; letter-spacing: -0.2px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.2;">Mas vendido</h4>
+      </div>
+      <img src="{{ url_for('static', filename='imagenes/vendido.jpg') }}" alt="thumb1" style="width:100%; height:110px; object-fit:cover; display:block; flex-shrink: 0;">
+    </div>
+
+    <!-- Card 2 -->
+    <div style="border-radius:14px; overflow:hidden; background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s ease; display: flex; flex-direction: column; max-height: 160px;">
+      <div style="padding:10px 12px;">
+        <h4 style="margin:0; color:var(--text); font-size: 0.88rem; font-weight: 600; letter-spacing: -0.2px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.2;">Estreno destacado</h4>
+      </div>
+      <img src="{{ url_for('static', filename='imagenes/nieve.jpg') }}" alt="thumb2" style="width:100%; height:110px; object-fit:cover; display:block; flex-shrink: 0;">
+    </div>
+
+    <!-- Card 3 -->
+    <div style="border-radius:14px; overflow:hidden; background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s ease; display: flex; flex-direction: column; max-height: 160px;">
+      <div style="padding:10px 12px;">
+        <h4 style="margin:0; color:var(--text); font-size: 0.88rem; font-weight: 600; letter-spacing: -0.2px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.2;">Autor recomendado</h4>
+      </div>
+      <img src="{{ url_for('static', filename='imagenes/fiodor.jpg') }}" alt="thumb3" style="width:100%; height:110px; object-fit:cover; display:block; flex-shrink: 0;">
+    </div>
+
+    <!-- Card 4 -->
+    <div style="border-radius:14px; overflow:hidden; background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s ease; display: flex; flex-direction: column; max-height: 160px;">
+      <div style="padding:10px 12px;">
+        <h4 style="margin:0; color:var(--text); font-size: 0.88rem; font-weight: 600; letter-spacing: -0.2px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.2;">Mas leído</h4>
+      </div>
+      <img src="{{ url_for('static', filename='imagenes/anillos.jpg') }}" alt="thumb4" style="width:100%; height:110px; object-fit:cover; display:block; flex-shrink: 0;">
+    </div>
+
+    <!-- Card 5 - NUEVA -->
+    <div style="border-radius:14px; overflow:hidden; background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s ease; display: flex; flex-direction: column; max-height: 160px;">
+      <div style="padding:10px 12px;">
+        <h4 style="margin:0; color:var(--text); font-size: 0.88rem; font-weight: 600; letter-spacing: -0.2px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.2;">Clásico del cine</h4>
+      </div>
+      <img src="{{ url_for('static', filename='imagenes/padrino.jpg') }}" alt="thumb5" style="width:100%; height:110px; object-fit:cover; display:block; flex-shrink: 0;">
+    </div>
+
+    <!-- Card 6 - NUEVA -->
+    <div style="border-radius:14px; overflow:hidden; background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s ease; display: flex; flex-direction: column; max-height: 160px;">
+      <div style="padding:10px 12px;">
+        <h4 style="margin:0; color:var(--text); font-size: 0.88rem; font-weight: 600; letter-spacing: -0.2px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.2;">Novela japonesa</h4>
+      </div>
+      <img src="{{ url_for('static', filename='imagenes/soyungato.jpg') }}" alt="thumb6" style="width:100%; height:110px; object-fit:cover; display:block; flex-shrink: 0;">
+    </div>
+
+    <!-- Card 7 - NUEVA -->
+    <div style="border-radius:14px; overflow:hidden; background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s ease; display: flex; flex-direction: column; max-height: 160px;">
+      <div style="padding:10px 12px;">
+        <h4 style="margin:0; color:var(--text); font-size: 0.88rem; font-weight: 600; letter-spacing: -0.2px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.2;">Bestseller actual</h4>
+      </div>
+      <img src="{{ url_for('static', filename='imagenes/vendido.jpg') }}" alt="thumb7" style="width:100%; height:110px; object-fit:cover; display:block; flex-shrink: 0;">
+    </div>
+
+    <!-- Card 8 - NUEVA -->
+    <div style="border-radius:14px; overflow:hidden; background:rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s ease; display: flex; flex-direction: column; max-height: 160px;">
+      <div style="padding:10px 12px;">
+        <h4 style="margin:0; color:var(--text); font-size: 0.88rem; font-weight: 600; letter-spacing: -0.2px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.2;">Épica fantástica</h4>
+      </div>
+      <img src="{{ url_for('static', filename='imagenes/anillos.jpg') }}" alt="thumb8" style="width:100%; height:110px; object-fit:cover; display:block; flex-shrink: 0;">
+    </div>
+  </div>
+  <div style="display: flex; justify-content: flex-end; margin-top: auto; padding-right: 8px;">
+        <a class="btn btn-outline" href="#" style="display:inline-block;">Ver más noticias</a>
+      </div>
+    </div>
+</div>
+
+
+<!-- SOPORTE - MÁS AMPLIO -->
+<!-- SOPORTE - MÁS AMPLIO -->
+<section style="padding:30px 0;">
+  <div class="container" style="max-width:1100px;">
+    <div class="hero" style="padding:40px; text-align:center;">
+      <h2 style="margin-top:0; margin-bottom: 16px; font-size:2rem; color:transparent; background-clip:text; -webkit-background-clip:text; background-image:var(--accent); font-weight:800; letter-spacing: -0.5px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;">Soporte</h2>
+      <p style="max-width:800px; margin:0 auto 28px; color:var(--muted); font-size: 1.05rem; line-height: 1.6; font-weight: 400; letter-spacing: -0.2px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;">
+        ¿Necesitas ayuda? Contáctanos para soporte técnico o consultas sobre recomendaciones, estaremos atentos a tu solicitud.
+      </p>
+
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="mailto:soporte@vora.co" class="theme-btn">Enviar email</a>
+        <a href="tel:+57 322-951-7642" class="theme-btn">Llámanos</a>
+        <a class="theme-btn" href="{{ url_for('formulario') }}">Formulario</a> 
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
